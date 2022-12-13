@@ -1,0 +1,2 @@
+pragma Restrictions (No_Tasking);
+pragma Restrictions (No_Exception_Propagation);

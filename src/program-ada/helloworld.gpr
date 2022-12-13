@@ -1,0 +1,7 @@
+project HelloWorld is
+   for Source_Dirs use ("sources/entrypoint",
+                        "$(ADALABS_ROOT_PATH)/solada/sdk/inc",
+                        "$(ADALABS_ROOT_PATH)/solada/sdk/thin/sources",
+                        "$(ADALABS_ROOT_PATH)/solada/rts/adainclude"
+                        );
+end HelloWorld;
