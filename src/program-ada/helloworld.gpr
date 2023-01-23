@@ -1,7 +1,27 @@
 project HelloWorld is
-   for Source_Dirs use ("sources/entrypoint",
-                        "$(ADALABS_ROOT_PATH)/solada/sdk/inc",
-                        "$(ADALABS_ROOT_PATH)/solada/sdk/thin/sources",
-                        "$(ADALABS_ROOT_PATH)/solada/rts/adainclude"
-                        );
+   for Languages use ("Ada", "C");
+
+   type Target_Type is ("bpf", "sbf");
+   Target : Target_Type := external ("target", "sbf");
+
+   SolAda_Path := external ("ADALABS_ROOT_PATH") & "/solada";
+
+   case Target is
+   when "bpf" =>
+      for Source_Dirs use ("sources/entrypoint",
+                           SolAda_Path & "/sdk/bpf/thin/sources",
+                           SolAda_Path & "/sdk/bpf/thin/inc",
+                           SolAda_Path & "/sdk/bpf/thin/inc/sol",
+                           SolAda_Path & "/sdk/bpf/thick/sources",
+                           SolAda_Path & "/rts/bpf/adainclude"
+                          );
+      when "sbf" =>
+         for Source_Dirs use ("sources/entrypoint",
+                              SolAda_Path & "/sdk/sbf/thin/sources",
+                              SolAda_Path & "/sdk/sbf/thin/inc",
+                              SolAda_Path & "/sdk/sbf/thin/inc/sol",
+                              SolAda_Path & "/sdk/sbf/thick/sources",
+                              SolAda_Path & "/rts/sbf/adainclude"
+                             );
+   end case;
 end HelloWorld;
